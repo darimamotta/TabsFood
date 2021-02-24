@@ -1,5 +1,5 @@
 //tabs
-document.addEventListener('DOMContentLoaded', () =>{
+window.addEventListener('DOMContentLoaded', () =>{
     const tabs= document.querySelectorAll('.tabheader__item'),
     tabsContent= document.querySelectorAll('.tabcontent'),
     tabsParent= document.querySelector('.tabheader__items');
@@ -91,17 +91,38 @@ return {
           modal= document.querySelector('.modal'),
           modalCloseBtn = document.querySelector('[data-close]');
 
-    modalTrigger.addEventListener('click',() => {
+          modalTrigger.forEach(btn=>{
+           btn.addEventListener('click',() => {
         modal.classList.add('show');
         modal.classList.remove('hide');
+        //modal.classList.toggle('show');
         document.body.style.overflow ='hidden';
-    });
+    });    
+          });
+   
 
-        
-    modalCloseBtn.addEventListener('click',() => {
+        function closeModal(){    
         modal.classList.add('hide');
         modal.classList.remove('show');
+        //modal.classList.toggle('show');
         document.body.style.overflow ='';
-    });
 
+        }
+modalCloseBtn.addEventListener('click', closeModal);
+modal.addEventListener('click',(e)=>{
+    if (e.target===modal){
+        closeModal();
+  
+            //modal.classList.add('hide');
+            //modal.classList.remove('show');
+           // modal.classList.toggle('show');
+            //document.body.style.overflow ='';
+
+    }
+});
+document.addEventListener('keydown',(e)=>{
+    if (e.code==="Escape" && modal.classList.contains('show')){
+        closeModal();
+    }
+});
 });
