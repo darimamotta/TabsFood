@@ -87,12 +87,13 @@ return {
     setClock('.timer',deadline);
 
     //Modal
+     
     const modalTrigger=document.querySelectorAll('[data-modal]'),
           modal= document.querySelector('.modal'),
           modalCloseBtn = document.querySelector('[data-close]');
 
-          modalTrigger.forEach(btn=>{
-           btn.addEventListener('click',() => {
+          modalTrigger.forEach(btn => {
+           btn.addEventListener('click',function() {
         modal.classList.add('show');
         modal.classList.remove('hide');
         //modal.classList.toggle('show');
@@ -105,12 +106,12 @@ return {
         modal.classList.add('hide');
         modal.classList.remove('show');
         //modal.classList.toggle('show');
-        document.body.style.overflow ='';
+        document.body.style.overflow = '';
 
         }
 modalCloseBtn.addEventListener('click', closeModal);
 modal.addEventListener('click',(e)=>{
-    if (e.target===modal){
+    if (e.target=== modal){
         closeModal();
   
             //modal.classList.add('hide');
